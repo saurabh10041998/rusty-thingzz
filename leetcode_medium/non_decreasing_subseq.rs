@@ -1,5 +1,5 @@
 use std::collections::HashSet;
-fn find_subsequences(nums: Vec<i32>) -> Vec<Vec<i32>> { 
+fn find_subsequences(nums: Vec<i32>) -> Vec<Vec<i32>> {
     let mut ans = HashSet::new();
     let n = nums.len();
     for bit in 0..usize::pow(2, n as u32) {
@@ -28,17 +28,29 @@ pub mod tests {
 
     #[test]
     fn run_tc1() {
-        let nums = vec![4,6,7,7];
-        assert_eq!(find_subsequences(nums), vec![vec![4,6],vec![4,6,7],vec![4,6,7,7],vec![4,7],vec![4,7,7],vec![6,7],vec![6,7,7],vec![7,7]])
+        let nums = vec![4, 6, 7, 7];
+        assert_eq!(
+            find_subsequences(nums),
+            vec![
+                vec![4, 6],
+                vec![4, 6, 7],
+                vec![4, 6, 7, 7],
+                vec![4, 7],
+                vec![4, 7, 7],
+                vec![6, 7],
+                vec![6, 7, 7],
+                vec![7, 7]
+            ]
+        )
     }
     #[test]
     fn run_tc2() {
-        let nums = vec![4,4,3,2,1];
-        assert_eq!(find_subsequences(nums), vec![vec![4,4]]);
+        let nums = vec![4, 4, 3, 2, 1];
+        assert_eq!(find_subsequences(nums), vec![vec![4, 4]]);
     }
 }
 
 fn main() {
-    let nums = vec![4,4,3,2,1];
-    assert_eq!(find_subsequences(nums), vec![vec![4,4]])
+    let nums = vec![4, 4, 3, 2, 1];
+    assert_eq!(find_subsequences(nums), vec![vec![4, 4]])
 }
