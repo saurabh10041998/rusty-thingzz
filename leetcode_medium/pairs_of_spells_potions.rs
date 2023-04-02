@@ -51,10 +51,13 @@ pub mod tests {
     }
     #[test]
     fn run_tc3() {
-        let spells = vec![1,2,3,4,5,6,7];
-        let potions = vec![1,2,3,4,5,6,7];
+        let spells = vec![1, 2, 3, 4, 5, 6, 7];
+        let potions = vec![1, 2, 3, 4, 5, 6, 7];
         let success = 25;
-        assert_eq!(successful_pairs(spells, potions, success), vec![0,0,0,1,3,3,4]);
+        assert_eq!(
+            successful_pairs(spells, potions, success),
+            vec![0, 0, 0, 1, 3, 3, 4]
+        );
     }
 }
 
