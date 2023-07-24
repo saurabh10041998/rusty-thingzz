@@ -1,6 +1,6 @@
-fn bin_pow(mut x: f64, mut n: i64) -> f64 { 
-    let mut ans:f64 = 1.0;
-    while n != 0  {
+fn bin_pow(mut x: f64, mut n: i64) -> f64 {
+    let mut ans: f64 = 1.0;
+    while n != 0 {
         if n & 1 != 0 {
             ans *= x;
         }
@@ -8,7 +8,6 @@ fn bin_pow(mut x: f64, mut n: i64) -> f64 {
         n >>= 1;
     }
     ans
-    
 }
 
 fn my_pow(x: f64, n: i32) -> f64 {
