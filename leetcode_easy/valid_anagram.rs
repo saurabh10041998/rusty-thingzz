@@ -1,15 +1,22 @@
+//! Solution for this problem is simple
+//! Prepare hashmap / counter of characters in both strings s and t
+//! and check if the both hashmaps are equal
+//! Thankfully Rust has `eq` and `partialEq` traits implemented for HashMap
+//! so we just have to call eq() method, and that does the job of
+//! comparing two hashmaps for equality
 use std::collections::HashMap;
-
 fn is_anagram(s: String, t: String) -> bool {
-    let (mut hm1, mut hm2) = (HashMap::new(), HashMap::new());
-    for c1 in s.chars() {
-        hm1.entry(c1).and_modify(|v| *v += 1).or_insert(1);
-    }
-    for c2 in t.chars() {
-        hm2.entry(c2).and_modify(|v| *v += 1).or_insert(1);
-    }
-    hm1 == hm2
+    s.chars()
+        .fold(HashMap::new(), |mut accum, ch| {
+            accum.entry(ch).and_modify(|f| *f += 1).or_insert(1);
+            accum
+        })
+        .eq(&t.chars().fold(HashMap::new(), |mut accum, ch| {
+            accum.entry(ch).and_modify(|f| *f += 1).or_insert(1);
+            accum
+        }))
 }
+
 #[cfg(test)]
 pub mod tests {
     use crate::is_anagram;
@@ -17,17 +24,18 @@ pub mod tests {
     fn run_tc1() {
         let s = String::from("anagram");
         let t = String::from("nagaram");
-        assert_eq!(is_anagram(s, t), true);
+        assert!(is_anagram(s, t));
     }
     #[test]
     fn run_tc2() {
         let s = String::from("rat");
         let t = String::from("car");
-        assert_eq!(is_anagram(s, t), false);
+        assert!(!is_anagram(s, t));
     }
 }
+
 fn main() {
-    let s = String::from("rat");
-    let t = String::from("car");
-    assert_eq!(is_anagram(s, t), false);
+    let s = String::from("anagram");
+    let t = String::from("nagaram");
+    assert!(is_anagram(s, t));
 }
